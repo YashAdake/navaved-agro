@@ -33,8 +33,8 @@ const products = {
             "Great for healthy baking & cooking",
             "Suitable for Ayurvedic remedies"
         ],
-        price: "₹215 - ₹960",
-        sizes: "Available in 215g, 480g, 960g"
+        price: "₹100 (215g) | ₹200 (480g)",
+        sizes: "215g, 480g"
     },
     annapurna: {
         name: "Annapurna",
@@ -56,8 +56,8 @@ const products = {
             "Contains antioxidants",
             "No added chemicals or preservatives"
         ],
-        price: "₹50 - ₹200",
-        sizes: "Available in 50g, 200g"
+        price: "₹60 (50g) | ₹200 (200g)",
+        sizes: "50g, 200g"
     },
     masalamirchi: {
         name: "Masala Mirchi",
@@ -79,8 +79,8 @@ const products = {
             "No chemicals or preservatives",
             "Traditional recipe with modern quality"
         ],
-        price: "₹25 - ₹50",
-        sizes: "Available in 50g"
+        price: "₹60 (50g)",
+        sizes: "50g"
     }
 };
 

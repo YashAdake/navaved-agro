@@ -321,7 +321,8 @@ button {
     flex-direction: column;
     gap: 5px;
     padding: 10px;
-    z-index: 1001;
+    z-index: 1100;
+    position: relative;
 }
 
 .hamburger {
@@ -334,6 +335,13 @@ button {
 }
 
 .navbar.scrolled .hamburger {
+    background: var(--dark);
+}
+
+/* When menu is active, always show dark hamburger */
+.nav-toggle.active .hamburger,
+.nav-toggle.active .hamburger::before,
+.nav-toggle.active .hamburger::after {
     background: var(--dark);
 }
 
@@ -363,13 +371,13 @@ button {
 .nav-toggle.active .hamburger::before {
     top: 0;
     transform: rotate(45deg);
-    background: var(--dark);
+    background: var(--primary);
 }
 
 .nav-toggle.active .hamburger::after {
     top: 0;
     transform: rotate(-45deg);
-    background: var(--dark);
+    background: var(--primary);
 }
 
 @media (max-width: 768px) {
@@ -386,9 +394,11 @@ button {
         background: var(--white);
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         gap: var(--spacing-lg);
         transform: translateX(100%);
         transition: var(--transition-normal);
+        z-index: 1050;
     }
 
     .nav-menu.active {
@@ -398,6 +408,15 @@ button {
     .nav-link {
         color: var(--dark);
         font-size: 1.5rem;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--primary);
+    }
+
+    .nav-cta {
+        margin-top: var(--spacing-md);
     }
 }
 
@@ -1382,6 +1401,12 @@ button {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-lg);
+}
+
+/* Single team member - center it */
+.team-grid.team-single {
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .team-card {
