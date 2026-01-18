@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Find NAVAVED Ayurvedic products near you. List of authorized retailers and stores selling Aayurgul, Annapurna, and Masala Mirchi.">
+    <title>Where to Buy - NAVAVED Stores | Find Ayurvedic Products Near You</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo/logo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Stores Page Specific Styles */
+        .stores-hero {
+            background: linear-gradient(135deg, var(--secondary-dark) 0%, var(--secondary) 100%);
+            padding: 120px 0 60px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .stores-hero h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stores-hero p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .stores-section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .region-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+        }
+
+        .stores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .store-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-normal);
+            border-left: 4px solid var(--primary);
+        }
+
+        .store-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .store-name {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .store-tagline {
+            color: var(--primary);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .store-details {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .store-details li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xs);
+            color: var(--dark-light);
+            font-size: 0.95rem;
+        }
+
+        .store-details li i {
+            color: var(--primary);
+            margin-top: 3px;
+            min-width: 16px;
+        }
+
+        .store-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--cream-dark);
+        }
+
+        .store-contact a {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            color: var(--secondary);
+            font-size: 0.85rem;
+            transition: var(--transition-normal);
+        }
+
+        .store-contact a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .store-contact a.whatsapp:hover {
+            background: #25D366;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            color: var(--white);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-md);
+            transition: var(--transition-normal);
+        }
+
+        .back-home:hover {
+            opacity: 1;
+        }
+
+        .simple-store {
+            background: var(--cream);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .simple-store-name {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .simple-store-location {
+            color: var(--dark-light);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .stores-hero h1 {
+                font-size: 2rem;
+            }
+
+            .stores-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo/logo.png" alt="NAVAVED Logo">
+            </a>
+            <a href="index.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="stores-hero">
+        <div class="container">
+            <a href="index.html" class="back-home">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <h1><i class="fas fa-store"></i> Where to Buy</h1>
+            <p>Find NAVAVED Ayurvedic products at these authorized retailers near you</p>
+        </div>
+    </section>
+
+    <!-- Stores Listing -->
+    <section class="stores-section">
+        <div class="container">
+
+            <!-- PUNE REGION -->
+            <h2 class="region-title"><i class="fas fa-map-marker-alt"></i> Pune Region</h2>
+            <div class="stores-grid">
+
+                <!-- Gau Bhoomi -->
+                <div class="store-card">
+                    <h3 class="store-name">Gau Bhoomi (Shrinandini Goshala)</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-user"></i> Nayana Deshpande</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Flat No. 1, Natraj Society, Vitthal Mandir Road,
+                            Opposite Sanman Hotel, Karve Nagar, Pune - 411052</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:9420631474"><i class="fas fa-phone"></i> 9420631474</a>
+                        <a href="tel:8767241236"><i class="fas fa-phone"></i> 8767241236</a>
+                    </div>
+                </div>
+
+                <!-- Natural World -->
+                <div class="store-card">
+                    <h3 class="store-name">Natural World (Dairy Farm & Agro)</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-user"></i> Satish Khaire</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Shop No. 6, "The Orane", S.No. 37/1, Near Shalin
+                            Boutique, Ramnagar, Wadgaonsheri, Pune - 411014</li>
+                        <li><i class="fas fa-box"></i> Desi Cow Milk, Panchgavya Soap, Ghee & more</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:9960571038"><i class="fas fa-phone"></i> 9960571038</a>
+                        <a href="tel:9975228979"><i class="fas fa-phone"></i> 9975228979</a>
+                    </div>
+                </div>
+
+                <!-- Joglekar Enterprises -->
+                <div class="store-card">
+                    <h3 class="store-name">Joglekar Enterprises</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Shop No. 1C, Sandeepshree Co-op Hsg Soc., Dahanukar
+                            Colony, Lane No. 2, Kothrud, Pune - 411038</li>
+                        <li><i class="fas fa-envelope"></i> joglekarent2025@gmail.com</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:8888833162"><i class="fas fa-phone"></i> 88888 33162</a>
+                        <a href="https://wa.me/917620833162" class="whatsapp"><i class="fab fa-whatsapp"></i>
+                            WhatsApp</a>
+                    </div>
+                </div>
+
+                <!-- Tikar Tailors -->
+                <div class="store-card">
+                    <h3 class="store-name">Tikar Tailors & Sons (Khadi Bhandar)</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-user"></i> Neeraj Tikar / Nitin Tikar</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 150 Budhwar Peth, Jogeshwari Mandir Chowk, Pune -
+                            411002</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Juna Jakat Naka, Rupali Corner Bldg., Chinchwadgaon,
+                            Pune - 411033</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:8390097179"><i class="fas fa-phone"></i> 8390097179</a>
+                        <a href="tel:9607396999"><i class="fas fa-phone"></i> 9607396999</a>
+                    </div>
+                </div>
+
+                <!-- Dorabjee -->
+                <div class="store-card">
+                    <h3 class="store-name">Dorabjee</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Vimanagar, Camp, Pune</li>
+                    </ul>
+                </div>
+
+                <!-- Super Bazar Ranjangaon -->
+                <div class="store-card">
+                    <h3 class="store-name">Super Bazar</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> At Post: Ranjangaon, Tal: Shirur, Dist: Pune - 412220
+                        </li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:8766652599"><i class="fas fa-phone"></i> 87666 52599</a>
+                    </div>
+                </div>
+
+                <!-- Super Bazar Shikrapur -->
+                <div class="store-card">
+                    <h3 class="store-name">Super Bazar</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Ap: Shikrapur, Tal: Shirur, Dist: Pune - 412208</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:9035823003"><i class="fas fa-phone"></i> 9035823003</a>
+                    </div>
+                </div>
+
+                <!-- Super Bazar Alandi -->
+                <div class="store-card">
+                    <h3 class="store-name">Super Bazar</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Vadgaon Road, Near Ram Mandir, Alandi - Devachi, Tal:
+                            Khed, Dist: Pune - 412105</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:9579796959"><i class="fas fa-phone"></i> 9579796959</a>
+                    </div>
+                </div>
+
+                <!-- Super Bazar Nasarapur -->
+                <div class="store-card">
+                    <h3 class="store-name">Super Bazar</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Fadtane Vasti, Chicholi, Velha Road, Nasarapur, Tal:
+                            Bhor, Dist: Pune - 412213</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:7387036640"><i class="fas fa-phone"></i> 7387036640</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- KOLHAPUR REGION -->
+            <h2 class="region-title"><i class="fas fa-map-marker-alt"></i> Kolhapur Region</h2>
+            <div class="stores-grid">
+
+                <!-- Sawant Agro -->
+                <div class="store-card">
+                    <h3 class="store-name">Sawant Agro</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-user"></i> Mr. Ajit</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Nagla Park, Kolhapur</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:9763481210"><i class="fas fa-phone"></i> 97634 81210</a>
+                    </div>
+                </div>
+
+                <!-- Om Medical -->
+                <div class="store-card">
+                    <h3 class="store-name">Om Medical & General Stores</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> BS, Chourangi Complex, Kolhapur</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:8600912789"><i class="fas fa-phone"></i> 86009 12789</a>
+                    </div>
+                </div>
+
+                <!-- Mulani Food Mart -->
+                <div class="store-card">
+                    <h3 class="store-name">Mulani Food Mart</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Near Reliance Mall, Laxmipuri, Kolhapur</li>
+                    </ul>
+                </div>
+
+                <!-- Argi Fresh -->
+                <div class="store-card">
+                    <h3 class="store-name">Argi Fresh</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Near Pitali Ganpati, Nagala Park, Kolhapur</li>
+                    </ul>
+                </div>
+
+                <!-- Warana Bazar -->
+                <div class="store-card">
+                    <h3 class="store-name">Warana Bazar</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Wadgaon, Kolhapur</li>
+                    </ul>
+                </div>
+
+                <!-- Ratna Mart -->
+                <div class="store-card">
+                    <h3 class="store-name">Ratna Mart</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Wagwadi, Kolhapur</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- SANGLI & SATARA REGION -->
+            <h2 class="region-title"><i class="fas fa-map-marker-alt"></i> Sangli & Satara Region</h2>
+            <div class="stores-grid">
+
+                <!-- Viren Agro -->
+                <div class="store-card">
+                    <h3 class="store-name">Viren Agro Shoppi (विरेन ॲग्रो शोपी)</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Timber Market, Sangli</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:8482895103"><i class="fas fa-phone"></i> 84828 95103</a>
+                    </div>
+                </div>
+
+                <!-- Heramb Medical -->
+                <div class="store-card">
+                    <h3 class="store-name">Heramb Medical Store</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Karad</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:9561619006"><i class="fas fa-phone"></i> 9561619006</a>
+                    </div>
+                </div>
+
+                <!-- Kavare Shopee -->
+                <div class="store-card">
+                    <h3 class="store-name">Kavare Shopee</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Jipur</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- MUMBAI REGION -->
+            <h2 class="region-title"><i class="fas fa-map-marker-alt"></i> Mumbai Region</h2>
+            <div class="stores-grid">
+
+                <!-- Prasad Vasant Gogate -->
+                <div class="store-card">
+                    <h3 class="store-name">Prasad Vasant Gogate (प्रसाद वसंत गोगटे)</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> C-06, New Poonam Co-op Society, Sangeeta Wadi,
+                            Narurkar Path, Dombivli East - 421201</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:9833547451"><i class="fas fa-phone"></i> 098335 47451</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- AHMEDNAGAR REGION -->
+            <h2 class="region-title"><i class="fas fa-map-marker-alt"></i> Ahmednagar Region</h2>
+            <div class="stores-grid">
+
+                <!-- New Aapala Bazar -->
+                <div class="store-card">
+                    <h3 class="store-name">New Aapala Bazar</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Hasamapur Road, Loni Bk</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:7972061867"><i class="fas fa-phone"></i> 7972061867</a>
+                        <a href="tel:02422295060"><i class="fas fa-phone"></i> (02422) 295060</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- KARNATAKA REGION -->
+            <h2 class="region-title"><i class="fas fa-map-marker-alt"></i> Karnataka</h2>
+            <div class="stores-grid">
+
+                <!-- Satwik Organics -->
+                <div class="store-card">
+                    <h3 class="store-name">Satwik Organics</h3>
+                    <p class="store-tagline">"Eat food as medicine not medicine as food."</p>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Opposite Bharth Petrol Pump, 2nd Cross, Sampige Nagar,
+                            DN Koppa, Kelageri Road, Dharwad - 580008</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:9035969833"><i class="fas fa-phone"></i> 9035969833</a>
+                        <a href="tel:7899823640"><i class="fas fa-phone"></i> 7899823640</a>
+                    </div>
+                </div>
+
+                <!-- Rayguru Mart -->
+                <div class="store-card">
+                    <h3 class="store-name">Rayguru Mart</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Sy No. 1076 A/2, BLDEA Road, Vijayapura - 586103</li>
+                    </ul>
+                    <div class="store-contact">
+                        <a href="tel:9110638455"><i class="fas fa-phone"></i> 9110638455</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RATNAGIRI REGION -->
+            <h2 class="region-title"><i class="fas fa-map-marker-alt"></i> Ratnagiri Region</h2>
+            <div class="stores-grid">
+
+                <!-- Town Bazar -->
+                <div class="store-card">
+                    <h3 class="store-name">Town Bazar</h3>
+                    <ul class="store-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Sakharpa, Tal-Dist: Ratnagiri</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- CTA Section -->
+            <div
+                style="text-align: center; padding: var(--spacing-xl) 0; background: var(--cream); border-radius: var(--radius-lg); margin-top: var(--spacing-xl);">
+                <h3
+                    style="font-family: var(--font-display); color: var(--secondary); margin-bottom: var(--spacing-sm);">
+                    Want to Stock NAVAVED Products?</h3>
+                <p style="color: var(--dark-light); margin-bottom: var(--spacing-md);">Become an authorized retailer and
+                    bring authentic Ayurvedic products to your customers.</p>
+                <a href="https://wa.me/919225802549?text=Hello%20NAVAVED!%20I%20am%20interested%20in%20stocking%20your%20products%20in%20my%20store."
+                    target="_blank" class="btn btn-primary">
+                    <i class="fab fa-whatsapp"></i> Contact Us on WhatsApp
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="padding-top: var(--spacing-lg);">
+                <p>&copy; 2026 NAVAVED Agro Food & Products LLP. All Rights Reserved.</p>
+                <p>Made with <i class="fas fa-heart" style="color: var(--primary);"></i> for Ayurveda</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
