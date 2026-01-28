@@ -999,6 +999,16 @@ button {
     background: linear-gradient(135deg, #dc3545, #a71d2a);
 }
 
+.product-badge.healthy {
+    background: linear-gradient(135deg, var(--green), #34D399);
+    /* Greenish for healthy */
+}
+
+.product-badge.homemade {
+    background: linear-gradient(135deg, var(--gold), var(--primary-light));
+    /* Warm/Gold for homemade */
+}
+
 .product-info {
     padding: var(--spacing-md);
     text-align: center;
@@ -1905,4 +1915,124 @@ button {
 :focus-visible {
     outline: 3px solid var(--primary);
     outline-offset: 3px;
+}
+
+/* ============================================
+   HERO TAGLINES - Brand Slogans
+   ============================================ */
+.hero-taglines {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: linear-gradient(135deg, rgba(232, 119, 34, 0.08), rgba(212, 175, 55, 0.08));
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-taglines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(232, 119, 34, 0.05));
+    pointer-events: none;
+}
+
+.tagline-english,
+.tagline-marathi {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tagline-english {
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px dashed rgba(232, 119, 34, 0.3);
+}
+
+.hero-taglines .brand-name {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--secondary);
+    letter-spacing: 1px;
+}
+
+.hero-taglines .brand-slogan {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--primary-dark);
+    font-weight: 500;
+}
+
+.tagline-marathi .brand-name {
+    font-size: 1.5rem;
+}
+
+.tagline-marathi .brand-slogan {
+    font-size: 1rem;
+}
+
+@media (max-width: 576px) {
+    .hero-taglines {
+        padding: var(--spacing-sm);
+    }
+
+    .hero-taglines .brand-name {
+        font-size: 1.3rem;
+    }
+
+    .hero-taglines .brand-slogan {
+        font-size: 0.95rem;
+    }
+
+    .tagline-marathi .brand-name {
+        font-size: 1.2rem;
+    }
+
+    .tagline-marathi .brand-slogan {
+        font-size: 0.9rem;
+    }
+}
+
+/* ============================================
+   PRODUCT PRICE NOTE - Coming Soon Label
+   ============================================ */
+.product-price-note {
+    display: inline-block;
+    padding: 6px 16px;
+    background: linear-gradient(135deg, var(--cream), var(--cream-dark));
+    color: var(--secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--spacing-sm);
+    border: 1px dashed var(--primary-light);
+}
+
+/* ============================================
+   DELIVERY NOTE - Charges Extra
+   ============================================ */
+.delivery-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: linear-gradient(135deg, rgba(232, 119, 34, 0.1), rgba(212, 175, 55, 0.1));
+    color: var(--secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-md);
+    border: 1px dashed var(--primary);
+}
+
+.delivery-note i {
+    color: var(--primary);
+    font-size: 1rem;
 }

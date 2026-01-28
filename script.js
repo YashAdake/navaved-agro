@@ -64,7 +64,7 @@ const products = {
         tagline: "Kolhapuri Masala Mirchi - Beyond the Spice",
         tag: "Spicy",
         image: "assets/products/masalamirchi.jpg",
-        description: "Kolhapuri Masala Mirchi - Dried Stuffed Chillies with traditional spiciness of Kolhapur. We use thin and a bit spicy green chillies with stuffing of traditionally used spices serving mouth watering flavours. Our Masala Mirchi is sun-dried with no chemicals or preservatives added.",
+        description: "Kolhapuri Masala Mirchi - Dried Stuffed Chillies with traditional spiciness of Kolhapur. We use thin and a bit spicy green chillies with stuffing of traditionally used spices serving mouth watering flavours. Our Masala Mirchi is sun-dried with no chemicals and preservatives added.",
         ingredients: [
             "Thin Spicy Green Chillies",
             "Traditional Kolhapuri Spice Mix",
@@ -81,6 +81,54 @@ const products = {
         ],
         price: "₹60 (50g)",
         sizes: "50g"
+    },
+    guavajam: {
+        name: "Guava Jam",
+        tagline: "Amrut Fruit - Power of Health",
+        tag: "Healthy",
+        image: "assets/products/guava_jam.jpeg",
+        description: "Experience the natural taste of fresh guavas with our diverse range. A rich source of Vitamin A & C, our Guava Jam is made from high-quality fruit pulp, ensuring a delicious and healthy treat for your family.",
+        ingredients: [
+            "Fresh Guava Pulp",
+            "Sugar",
+            "Pectin (440)",
+            "Acidity Regulator (330)",
+            "Preservative (211)"
+        ],
+        benefits: [
+            "Rich in Vitamin C",
+            "Boosts immunity",
+            "Good for digestion",
+            "Natural energy booster",
+            "Delicious breakfast companion"
+        ],
+        price: "Coming soon",
+        sizes: "Various sizes"
+    },
+    garlicpickle: {
+        name: "Garlic Pickle",
+        tagline: "Homemade Lasun Lonche - Guard of Heart",
+        tag: "Homemade",
+        image: "assets/products/lasun_lonche.jpeg",
+        description: "Our Homemade Garlic Pickle (Lasun Lonche) is a perfect blend of taste and health. Known as a 'Guard of Heart', it combines traditional spices with the medicinal benefits of garlic.",
+        ingredients: [
+            "Fresh Garlic Cloves",
+            "Edible Oil",
+            "Chilli Powder",
+            "Turmeric",
+            "Salt",
+            "Mustard Seeds",
+            "Fenugreek"
+        ],
+        benefits: [
+            "Excellent for heart health",
+            "Improves digestion",
+            "Boosts immunity",
+            "Anti-inflammatory properties",
+            "Authentic homemade taste"
+        ],
+        price: "Coming soon",
+        sizes: "Various sizes"
     }
 };
 
