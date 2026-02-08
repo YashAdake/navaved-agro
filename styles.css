@@ -2014,6 +2014,19 @@ button {
     border: 1px dashed var(--primary-light);
 }
 
+/* Product Price Tag - Actual Price Display */
+.product-price-tag {
+    display: inline-block;
+    padding: 6px 16px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--spacing-sm);
+    box-shadow: var(--shadow-sm);
+}
+
 /* ============================================
    DELIVERY NOTE - Charges Extra
    ============================================ */

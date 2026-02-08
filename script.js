@@ -87,7 +87,7 @@ const products = {
         tagline: "Amrut Fruit - Power of Health",
         tag: "Healthy",
         image: "assets/products/guava_jam.jpeg",
-        description: "Experience the natural taste of fresh guavas with our diverse range. A rich source of Vitamin A & C, our Guava Jam is made from high-quality fruit pulp, ensuring a delicious and healthy treat for your family.",
+        description: "Guava (Peru) Jam offers numerous health benefits due to its rich content of Vitamin C, fiber, and antioxidants - including improved immunity, better digestion, heart health, and enhanced skin. It is packed with vitamins (A, C) and minerals (Potassium, Magnesium) that help fight infections, regulate blood sugar, lower blood pressure, and reduce signs of aging. However, moderation is key due to sugar content.",
         ingredients: [
             "Fresh Guava Pulp",
             "Sugar",
@@ -96,21 +96,22 @@ const products = {
             "Preservative (211)"
         ],
         benefits: [
-            "Rich in Vitamin C",
-            "Boosts immunity",
-            "Good for digestion",
-            "Natural energy booster",
-            "Delicious breakfast companion"
+            "Immunity Booster: High Vitamin C content strengthens the immune system, fights cold and flu",
+            "Aids Digestion: Fiber (Pectin) promotes healthy digestion and helps with constipation",
+            "Heart Health: Potassium and fiber help regulate blood pressure and cholesterol, reducing heart disease risk",
+            "Skin Health: Antioxidants and Vitamin A protect skin from damage, reduce aging, and enhance glow",
+            "Blood Sugar Control: Antioxidants and fiber help regulate blood sugar levels, beneficial for diabetics",
+            "Antioxidant Power: Rich in flavonoids, lycopene and other compounds that fight cell damage and inflammation"
         ],
-        price: "Coming soon",
-        sizes: "Various sizes"
+        price: "₹55 (105g)",
+        sizes: "105g"
     },
     garlicpickle: {
         name: "Garlic Pickle",
         tagline: "Homemade Lasun Lonche - Guard of Heart",
         tag: "Homemade",
         image: "assets/products/lasun_lonche.jpeg",
-        description: "Our Homemade Garlic Pickle (Lasun Lonche) is a perfect blend of taste and health. Known as a 'Guard of Heart', it combines traditional spices with the medicinal benefits of garlic.",
+        description: "Our Homemade Garlic Pickle (Lasun Lonche) is a perfect blend of taste and health. Known as a 'Guard of Heart', it combines traditional spices with the powerful medicinal benefits of garlic. Garlic is an excellent source of Vitamins C and B, along with essential minerals like Iron, Calcium, and Potassium.",
         ingredients: [
             "Fresh Garlic Cloves",
             "Edible Oil",
@@ -121,14 +122,17 @@ const products = {
             "Fenugreek"
         ],
         benefits: [
-            "Excellent for heart health",
-            "Improves digestion",
-            "Boosts immunity",
-            "Anti-inflammatory properties",
-            "Authentic homemade taste"
+            "Boosts Immunity: Strengthens the body's natural defense system",
+            "Reduces Cholesterol: Helps lower bad cholesterol levels",
+            "Controls Blood Pressure: Assists in regulating blood pressure",
+            "Improves Blood Circulation: Enhances blood flow throughout the body",
+            "Aids Digestion: Supports better digestive function",
+            "Rich in Vitamins C & B: Excellent source of essential vitamins",
+            "Mineral Powerhouse: Contains Iron, Calcium, and Potassium",
+            "Anti-inflammatory: Helps reduce inflammation in the body"
         ],
-        price: "Coming soon",
-        sizes: "Various sizes"
+        price: "₹75 (100g)",
+        sizes: "100g"
     }
 };
 
