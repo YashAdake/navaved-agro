@@ -7,9 +7,21 @@
     <meta name="description"
         content="NAVAVED - An Ayurvedic Blend with a Traditional Touch. Discover our range of authentic Ayurvedic products for a healthy and energetic life.">
     <meta name="keywords"
-        content="Ayurvedic products, natural health, Navaved, Aayurgul, Annapurna, traditional medicine, wellness">
-    <meta name="author" content="NAVAVED">
+        content="Ayurvedic products, natural health, Navaved, Aayurgul, Annapurna, traditional medicine, wellness, jaggery powder, mukhvas, Kolhapur">
+    <meta name="author" content="NAVAVED Agro Food & Products LLP">
     <title>NAVAVED | Ayurvedic Products - Natural Health & Wellness</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo/logo.png">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="NAVAVED | Ayurvedic Products - Natural Health & Wellness">
+    <meta property="og:description"
+        content="An Ayurvedic Blend with a Traditional Touch. Discover chemical-free, traditional food products from Kolhapur.">
+    <meta property="og:image" content="assets/hero-bg.png">
+    <meta property="og:url" content="https://navavedagro.com">
+    <meta name="twitter:card" content="summary_large_image">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +37,20 @@
 </head>
 
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Premium Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">
+                <img src="assets/logo/logo.png" alt="NAVAVED">
+            </div>
+            <div class="preloader-spinner"></div>
+            <p class="preloader-text">Loading Goodness...</p>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -223,6 +249,7 @@
                     <div class="product-info">
                         <h3 class="product-name">Aayurgul</h3>
                         <p class="product-tagline">Ayurvedic Jaggery Powder</p>
+                        <span class="product-price-tag">₹100 (215g) | ₹200 (480g)</span>
                         <button class="btn-details" onclick="openProductModal('aayurgul')">
                             <i class="fas fa-eye"></i>
                             View Details
@@ -239,6 +266,7 @@
                     <div class="product-info">
                         <h3 class="product-name">Annapurna</h3>
                         <p class="product-tagline">Shahi Mukhvas - Mouth Freshener</p>
+                        <span class="product-price-tag">₹60 (50g) | ₹200 (200g)</span>
                         <button class="btn-details" onclick="openProductModal('annapurna')">
                             <i class="fas fa-eye"></i>
                             View Details
@@ -255,6 +283,7 @@
                     <div class="product-info">
                         <h3 class="product-name">Masala Mirchi</h3>
                         <p class="product-tagline">Kolhapuri Dried Stuffed Chillies</p>
+                        <span class="product-price-tag">₹60 (50g)</span>
                         <button class="btn-details" onclick="openProductModal('masalamirchi')">
                             <i class="fas fa-eye"></i>
                             View Details
@@ -298,11 +327,11 @@
             </div>
 
             <!-- Where to Buy CTA -->
-            <div style="text-align: center; margin-top: var(--spacing-xl);">
-                <a href="stores.html" class="btn btn-secondary" style="font-size: 1.1rem; padding: 15px 40px;">
+            <div class="stores-cta">
+                <a href="stores.html" class="btn btn-secondary stores-cta-btn">
                     <i class="fas fa-store"></i> Find Stores Near You
                 </a>
-                <p style="margin-top: var(--spacing-sm); color: var(--dark-light); font-size: 0.95rem;">
+                <p class="stores-cta-text">
                     Available at 25+ authorized retailers across Maharashtra & Karnataka
                 </p>
             </div>
@@ -808,6 +837,18 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919225802549?text=Hello%20NAVAVED!%20I%20am%20interested%20in%20your%20Ayurvedic%20products."
+        target="_blank" class="whatsapp-float" id="whatsappFloat" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with us!</span>
+    </a>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>

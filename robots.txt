@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /resources/
+
+Sitemap: https://navavedagro.com/sitemap.xml

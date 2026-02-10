@@ -1,6 +1,6 @@
 // ============================================
 // NAVAVED - Ayurvedic Products Website
-// JavaScript Functionality
+// JavaScript Functionality — Enhanced
 // ============================================
 
 // Product Data - Accurate information from NAVAVED company
@@ -143,6 +143,44 @@ const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-link');
 const modal = document.getElementById('productModal');
 const statNumbers = document.querySelectorAll('.stat-number');
+const scrollProgress = document.getElementById('scrollProgress');
+const preloader = document.getElementById('preloader');
+const backToTopBtn = document.getElementById('backToTop');
+const whatsappFloat = document.getElementById('whatsappFloat');
+
+// ============================================
+// PRELOADER
+// ============================================
+function hidePreloader() {
+    if (preloader) {
+        preloader.classList.add('hidden');
+        // Remove from DOM after transition
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 600);
+    }
+}
+
+// Hide preloader when page is fully loaded
+window.addEventListener('load', () => {
+    // Minimum display time of 800ms for the preloader to feel intentional
+    setTimeout(hidePreloader, 800);
+});
+
+// Fallback: hide preloader after 4 seconds max
+setTimeout(hidePreloader, 4000);
+
+// ============================================
+// SCROLL PROGRESS BAR
+// ============================================
+function updateScrollProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    if (scrollProgress) {
+        scrollProgress.style.width = scrollPercent + '%';
+    }
+}
 
 // ============================================
 // NAVIGATION
@@ -151,7 +189,7 @@ const statNumbers = document.querySelectorAll('.stat-number');
 // Scroll Effect on Navbar
 let lastScrollY = window.scrollY;
 
-window.addEventListener('scroll', () => {
+function handleNavbarScroll() {
     const currentScrollY = window.scrollY;
 
     if (currentScrollY > 100) {
@@ -161,7 +199,7 @@ window.addEventListener('scroll', () => {
     }
 
     lastScrollY = currentScrollY;
-});
+}
 
 // Mobile Menu Toggle
 navToggle.addEventListener('click', () => {
@@ -201,7 +239,59 @@ function highlightNavLink() {
     });
 }
 
-window.addEventListener('scroll', highlightNavLink);
+// ============================================
+// BACK TO TOP & WHATSAPP FLOAT VISIBILITY
+// ============================================
+function handleFloatingButtons() {
+    const scrollY = window.scrollY;
+
+    // Show back-to-top after scrolling 500px
+    if (backToTopBtn) {
+        if (scrollY > 500) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    }
+
+    // Show WhatsApp float after scrolling 300px
+    if (whatsappFloat) {
+        if (scrollY > 300) {
+            whatsappFloat.classList.add('visible');
+        } else {
+            whatsappFloat.classList.remove('visible');
+        }
+    }
+}
+
+// Back to top click handler
+if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// ============================================
+// UNIFIED SCROLL HANDLER (performance optimized)
+// ============================================
+let ticking = false;
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            handleNavbarScroll();
+            highlightNavLink();
+            updateScrollProgress();
+            handleFloatingButtons();
+            animateCounters();
+            ticking = false;
+        });
+        ticking = true;
+    }
+});
 
 // ============================================
 // PRODUCT MODAL
@@ -265,6 +355,8 @@ function animateCounters() {
     if (countersAnimated) return;
 
     const highlightsSection = document.getElementById('highlights');
+    if (!highlightsSection) return;
+
     const sectionTop = highlightsSection.getBoundingClientRect().top;
     const windowHeight = window.innerHeight;
 
@@ -291,8 +383,6 @@ function animateCounters() {
         });
     }
 }
-
-window.addEventListener('scroll', animateCounters);
 
 // ============================================
 // REVIEWS MARQUEE DUPLICATION
@@ -332,7 +422,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ============================================
-// INTERSECTION OBSERVER FOR ANIMATIONS
+// ENHANCED INTERSECTION OBSERVER
 // ============================================
 
 const observerOptions = {
@@ -341,31 +431,65 @@ const observerOptions = {
     threshold: 0.1
 };
 
-const observer = new IntersectionObserver((entries) => {
+// Observer for cards (staggered reveal)
+const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            // Don't unobserve — keep it simple
+        }
+    });
+}, observerOptions);
+
+// Observer for section headers
+const headerObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animate-in');
         }
     });
-}, observerOptions);
+}, { root: null, rootMargin: '0px', threshold: 0.2 });
 
-// Observe elements for animation
-document.querySelectorAll('.product-card, .team-card, .stat-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
+// Setup reveal animations
+function setupRevealAnimations() {
+    // Cards: product, team, stat, choose, timeline, vision
+    const revealElements = document.querySelectorAll(
+        '.product-card, .team-card, .stat-card, .choose-card, .timeline-item, .vision-card'
+    );
 
-// Add animation class
-document.head.insertAdjacentHTML('beforeend', `
-    <style>
-        .animate-in {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
+    revealElements.forEach(el => {
+        el.classList.add('reveal-item');
+        cardObserver.observe(el);
+    });
+
+    // Section headers
+    document.querySelectorAll('.section-header').forEach(header => {
+        headerObserver.observe(header);
+    });
+}
+
+// ============================================
+// LAZY IMAGE LOADING
+// ============================================
+function setupLazyImages() {
+    // Add loading="lazy" to images below the fold
+    const allImages = document.querySelectorAll('img');
+    allImages.forEach((img, index) => {
+        // Skip hero images and logo (above the fold)
+        if (index > 2 && !img.closest('.preloader') && !img.closest('.nav-logo')) {
+            img.setAttribute('loading', 'lazy');
+
+            // Handle load event for fade-in
+            if (img.complete) {
+                img.classList.add('loaded');
+            } else {
+                img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                });
+            }
         }
-    </style>
-`);
+    });
+}
 
 // ============================================
 // INITIALIZE
@@ -375,11 +499,19 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMarquee();
     animateCounters();
     highlightNavLink();
+    setupRevealAnimations();
+    setupLazyImages();
 
     // Initial navbar state
     if (window.scrollY > 100) {
         navbar.classList.add('scrolled');
     }
+
+    // Initial floating button state
+    handleFloatingButtons();
+
+    // Initial scroll progress
+    updateScrollProgress();
 });
 
 // Make functions globally available
