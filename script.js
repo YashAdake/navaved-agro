@@ -1,6 +1,6 @@
 // ============================================
 // NAVAVED - Ayurvedic Products Website
-// JavaScript Functionality — Enhanced
+// JavaScript Functionality — Enhanced & Fixed
 // ============================================
 
 // Product Data - Accurate information from NAVAVED company
@@ -136,7 +136,9 @@ const products = {
     }
 };
 
-// DOM Elements
+// ============================================
+// SAFE DOM ELEMENT GETTERS
+// ============================================
 const navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
@@ -149,70 +151,70 @@ const backToTopBtn = document.getElementById('backToTop');
 const whatsappFloat = document.getElementById('whatsappFloat');
 
 // ============================================
-// PRELOADER
+// PRELOADER — FIXED: works on both fast & slow loads
 // ============================================
+let preloaderDismissed = false;
+
 function hidePreloader() {
-    if (preloader) {
-        preloader.classList.add('hidden');
-        // Remove from DOM after transition
-        setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 600);
-    }
+    if (preloaderDismissed || !preloader) return;
+    preloaderDismissed = true;
+
+    preloader.classList.add('hidden');
+    setTimeout(() => {
+        preloader.style.display = 'none';
+    }, 600);
 }
 
-// Hide preloader when page is fully loaded
-window.addEventListener('load', () => {
-    // Minimum display time of 800ms for the preloader to feel intentional
-    setTimeout(hidePreloader, 800);
-});
+// If page is already loaded (cached), hide immediately
+if (document.readyState === 'complete') {
+    setTimeout(hidePreloader, 300);
+} else {
+    window.addEventListener('load', () => {
+        setTimeout(hidePreloader, 600);
+    });
+}
 
-// Fallback: hide preloader after 4 seconds max
-setTimeout(hidePreloader, 4000);
+// Absolute fallback — never block content for more than 3 seconds
+setTimeout(hidePreloader, 3000);
 
 // ============================================
 // SCROLL PROGRESS BAR
 // ============================================
 function updateScrollProgress() {
+    if (!scrollProgress) return;
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight <= 0) return;
     const scrollPercent = (scrollTop / docHeight) * 100;
-    if (scrollProgress) {
-        scrollProgress.style.width = scrollPercent + '%';
-    }
+    scrollProgress.style.width = scrollPercent + '%';
 }
 
 // ============================================
 // NAVIGATION
 // ============================================
-
-// Scroll Effect on Navbar
-let lastScrollY = window.scrollY;
-
 function handleNavbarScroll() {
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY > 100) {
+    if (!navbar) return;
+    if (window.scrollY > 80) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
-
-    lastScrollY = currentScrollY;
 }
 
 // Mobile Menu Toggle
-navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
-    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-});
+if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+    });
+}
 
 // Close mobile menu when clicking a link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        navMenu.classList.remove('active');
+        if (navToggle) navToggle.classList.remove('active');
+        if (navMenu) navMenu.classList.remove('active');
         document.body.style.overflow = '';
     });
 });
@@ -225,7 +227,7 @@ function highlightNavLink() {
 
     sections.forEach(section => {
         const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
+        const sectionTop = section.offsetTop - 120;
         const sectionId = section.getAttribute('id');
 
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
@@ -245,63 +247,46 @@ function highlightNavLink() {
 function handleFloatingButtons() {
     const scrollY = window.scrollY;
 
-    // Show back-to-top after scrolling 500px
     if (backToTopBtn) {
-        if (scrollY > 500) {
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
-        }
+        backToTopBtn.classList.toggle('visible', scrollY > 400);
     }
-
-    // Show WhatsApp float after scrolling 300px
     if (whatsappFloat) {
-        if (scrollY > 300) {
-            whatsappFloat.classList.add('visible');
-        } else {
-            whatsappFloat.classList.remove('visible');
-        }
+        whatsappFloat.classList.toggle('visible', scrollY > 200);
     }
 }
 
-// Back to top click handler
 if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
 
 // ============================================
-// UNIFIED SCROLL HANDLER (performance optimized)
+// UNIFIED SCROLL HANDLER (debounced with rAF)
 // ============================================
-let ticking = false;
+let scrollTicking = false;
 
 window.addEventListener('scroll', () => {
-    if (!ticking) {
+    if (!scrollTicking) {
         requestAnimationFrame(() => {
             handleNavbarScroll();
             highlightNavLink();
             updateScrollProgress();
             handleFloatingButtons();
             animateCounters();
-            ticking = false;
+            scrollTicking = false;
         });
-        ticking = true;
+        scrollTicking = true;
     }
-});
+}, { passive: true });
 
 // ============================================
 // PRODUCT MODAL
 // ============================================
-
 function openProductModal(productId) {
     const product = products[productId];
-    if (!product) return;
+    if (!product || !modal) return;
 
-    // Populate modal content
     document.getElementById('modalImage').src = product.image;
     document.getElementById('modalImage').alt = product.name;
     document.getElementById('modalTag').textContent = product.tag;
@@ -310,37 +295,39 @@ function openProductModal(productId) {
     document.getElementById('modalDescription').textContent = product.description;
     document.getElementById('modalPrice').textContent = product.price;
 
-    // Populate ingredients
     const ingredientsList = document.getElementById('modalIngredients');
     ingredientsList.innerHTML = product.ingredients
         .map(ing => `<li>${ing}</li>`)
         .join('');
 
-    // Populate benefits
     const benefitsList = document.getElementById('modalBenefits');
     benefitsList.innerHTML = product.benefits
         .map(benefit => `<li>${benefit}</li>`)
         .join('');
 
-    // Populate sizes if available
     const sizesElement = document.getElementById('modalSizes');
     if (sizesElement && product.sizes) {
         sizesElement.textContent = product.sizes;
     }
 
-    // Show modal
+    // Show modal with body scroll lock
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    // On mobile, scroll modal to top
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) modalContent.scrollTop = 0;
 }
 
 function closeProductModal() {
+    if (!modal) return;
     modal.classList.remove('active');
     document.body.style.overflow = '';
 }
 
 // Close modal on escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
         closeProductModal();
     }
 });
@@ -348,7 +335,6 @@ document.addEventListener('keydown', (e) => {
 // ============================================
 // ANIMATED COUNTERS
 // ============================================
-
 let countersAnimated = false;
 
 function animateCounters() {
@@ -360,13 +346,13 @@ function animateCounters() {
     const sectionTop = highlightsSection.getBoundingClientRect().top;
     const windowHeight = window.innerHeight;
 
-    if (sectionTop < windowHeight * 0.8) {
+    if (sectionTop < windowHeight * 0.85) {
         countersAnimated = true;
 
         statNumbers.forEach(counter => {
             const target = parseInt(counter.getAttribute('data-target'));
-            const duration = 2000; // 2 seconds
-            const step = target / (duration / 16); // 60fps
+            const duration = 2000;
+            const step = target / (duration / 16);
             let current = 0;
 
             const updateCounter = () => {
@@ -387,12 +373,10 @@ function animateCounters() {
 // ============================================
 // REVIEWS MARQUEE DUPLICATION
 // ============================================
-
 function setupMarquee() {
     const track = document.querySelector('.marquee-track');
     if (!track) return;
 
-    // Clone all review cards for seamless infinite scroll
     const cards = track.querySelectorAll('.review-card');
     cards.forEach(card => {
         const clone = card.cloneNode(true);
@@ -403,11 +387,13 @@ function setupMarquee() {
 // ============================================
 // SMOOTH SCROLL FOR ANCHOR LINKS
 // ============================================
-
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return; // skip empty anchors
+
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) {
             const headerOffset = 80;
             const elementPosition = target.getBoundingClientRect().top;
@@ -422,71 +408,73 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ============================================
-// ENHANCED INTERSECTION OBSERVER
+// INTERSECTION OBSERVER — FIXED
+// Safely handles elements already in viewport
 // ============================================
-
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
-
-// Observer for cards (staggered reveal)
-const cardObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-            // Don't unobserve — keep it simple
-        }
-    });
-}, observerOptions);
-
-// Observer for section headers
-const headerObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-        }
-    });
-}, { root: null, rootMargin: '0px', threshold: 0.2 });
-
-// Setup reveal animations
-function setupRevealAnimations() {
-    // Cards: product, team, stat, choose, timeline, vision
-    const revealElements = document.querySelectorAll(
-        '.product-card, .team-card, .stat-card, .choose-card, .timeline-item, .vision-card'
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.bottom > 0
     );
+}
+
+function setupRevealAnimations() {
+    // Use CSS class for initial hidden state (applied via JS, not CSS)
+    // This way, if JS fails, content is still visible
+    const revealSelectors = '.product-card, .team-card, .stat-card, .choose-card, .timeline-item, .vision-card';
+    const revealElements = document.querySelectorAll(revealSelectors);
+
+    // Only setup observer if supported
+    if (!('IntersectionObserver' in window)) {
+        // Fallback: just show everything
+        return;
+    }
+
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                cardObserver.unobserve(entry.target);
+            }
+        });
+    }, { root: null, rootMargin: '0px 0px -30px 0px', threshold: 0.05 });
 
     revealElements.forEach(el => {
-        el.classList.add('reveal-item');
-        cardObserver.observe(el);
+        // If already in viewport, animate immediately
+        if (isElementInViewport(el)) {
+            el.classList.add('reveal-item');
+            // Use a microtask to ensure the browser renders the initial state first
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    el.classList.add('animate-in');
+                });
+            });
+        } else {
+            el.classList.add('reveal-item');
+            cardObserver.observe(el);
+        }
     });
 
     // Section headers
-    document.querySelectorAll('.section-header').forEach(header => {
-        headerObserver.observe(header);
-    });
-}
-
-// ============================================
-// LAZY IMAGE LOADING
-// ============================================
-function setupLazyImages() {
-    // Add loading="lazy" to images below the fold
-    const allImages = document.querySelectorAll('img');
-    allImages.forEach((img, index) => {
-        // Skip hero images and logo (above the fold)
-        if (index > 2 && !img.closest('.preloader') && !img.closest('.nav-logo')) {
-            img.setAttribute('loading', 'lazy');
-
-            // Handle load event for fade-in
-            if (img.complete) {
-                img.classList.add('loaded');
-            } else {
-                img.addEventListener('load', () => {
-                    img.classList.add('loaded');
-                });
+    const headerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                headerObserver.unobserve(entry.target);
             }
+        });
+    }, { root: null, rootMargin: '0px', threshold: 0.15 });
+
+    document.querySelectorAll('.section-header').forEach(header => {
+        if (isElementInViewport(header)) {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    header.classList.add('animate-in');
+                });
+            });
+        } else {
+            headerObserver.observe(header);
         }
     });
 }
@@ -494,23 +482,13 @@ function setupLazyImages() {
 // ============================================
 // INITIALIZE
 // ============================================
-
 document.addEventListener('DOMContentLoaded', () => {
     setupMarquee();
     animateCounters();
     highlightNavLink();
     setupRevealAnimations();
-    setupLazyImages();
-
-    // Initial navbar state
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    }
-
-    // Initial floating button state
+    handleNavbarScroll();
     handleFloatingButtons();
-
-    // Initial scroll progress
     updateScrollProgress();
 });
 
