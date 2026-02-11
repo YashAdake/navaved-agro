@@ -1,5 +1,18 @@
+# NAVAVED Agro Food & Products LLP - robots.txt
 User-agent: *
 Allow: /
-Disallow: /resources/
 
-Sitemap: https://navavedagro.com/sitemap.xml
+Sitemap: https://navavedagro.in/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Block non-public directories and files
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /resources/
+Disallow: /backup/
+Disallow: /*.zip$
