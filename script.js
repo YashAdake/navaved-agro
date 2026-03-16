@@ -310,6 +310,13 @@ function openProductModal(productId) {
         sizesElement.textContent = product.sizes;
     }
 
+    // Update WhatsApp link with product-specific message
+    const modalWhatsApp = document.getElementById('modalWhatsApp');
+    if (modalWhatsApp) {
+        const whatsappMsg = `Hello NAVAVED! I am interested in ordering *${product.name}* (${product.tagline}). Price: ${product.price}. Please share more details about availability and delivery.`;
+        modalWhatsApp.href = `https://wa.me/919225802549?text=${encodeURIComponent(whatsappMsg)}`;
+    }
+
     // Show modal with body scroll lock
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
