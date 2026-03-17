@@ -1,6 +1,6 @@
 # NAVAVED - Ayurvedic Products Website
 
-An Ayurvedic Blend with a Traditional Touch
+An Natural Blend with a Traditional Touch
 
 ## Quick Start
 

@@ -9,7 +9,7 @@ const products = {
         name: "Aayurgul",
         tagline: "Ayurvedic Jaggery Powder - Beyond Sweetness",
         tag: "Bestseller",
-        image: "assets/products/aayurgul.jpg",
+        image: "assets/products/aayurgul.jpeg",
         description: "Aayurgul is India's traditional unrefined sweetener made from sugarcane juice, enhanced with beneficial Ayurvedic herbs. We adhere to using the best quality jaggery powder and natural sun-drying methods to reduce moisture content. 100% Chemical-Free - absolutely no sulphur, artificial colours, flavours, or preservatives.",
         ingredients: [
             "Pure Jaggery (Gud)",
@@ -397,7 +397,7 @@ function setupMarquee() {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
-        if (href === '#') return; // skip empty anchors
+        if (!href || href === '#' || !href.startsWith('#')) return; // skip empty or non-anchor hrefs
 
         e.preventDefault();
         const target = document.querySelector(href);
@@ -490,38 +490,105 @@ function setupRevealAnimations() {
 // CUSTOM COMBO BUILDER
 // ============================================
 function setupCustomCombo() {
-    const checkboxes = document.querySelectorAll('#customCombo input[type="checkbox"]');
+    const comboItems = document.querySelectorAll('#customCombo .custom-combo-item');
     const totalDisplay = document.getElementById('customTotalPrice');
+    const itemsCountDisplay = document.getElementById('customItemsCount');
     const whatsappBtn = document.getElementById('customComboWhatsApp');
 
-    if (!checkboxes.length || !totalDisplay || !whatsappBtn) return;
+    if (!comboItems.length || !totalDisplay || !whatsappBtn) return;
 
-    checkboxes.forEach(cb => {
-        cb.addEventListener('change', updateCustomCombo);
-    });
+    // Setup event listeners for each product item
+    comboItems.forEach(item => {
+        const sizeSelect = item.querySelector('.combo-size-select');
+        const qtyInput = item.querySelector('.combo-qty');
+        const minusBtn = item.querySelector('.qty-minus');
+        const plusBtn = item.querySelector('.qty-plus');
 
-    function updateCustomCombo() {
-        let total = 0;
-        const selectedProducts = [];
+        // Size change
+        sizeSelect.addEventListener('change', () => {
+            // If a size is selected and qty is 0, auto-set to 1
+            if (sizeSelect.value && parseInt(qtyInput.value) === 0) {
+                qtyInput.value = 1;
+            }
+            updateComboTotals();
+        });
 
-        checkboxes.forEach(cb => {
-            if (cb.checked) {
-                total += parseInt(cb.dataset.price);
-                selectedProducts.push(cb.dataset.name);
+        // Quantity buttons
+        minusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            let val = parseInt(qtyInput.value);
+            if (val > 0) {
+                qtyInput.value = val - 1;
+                if (val - 1 === 0) sizeSelect.value = '';
+                updateComboTotals();
             }
         });
 
-        totalDisplay.textContent = `₹${total}`;
+        plusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            let val = parseInt(qtyInput.value);
+            if (val < 10) {
+                // If no size selected, auto-select the first option
+                if (!sizeSelect.value) {
+                    sizeSelect.selectedIndex = 1; // select first real option
+                }
+                qtyInput.value = val + 1;
+                updateComboTotals();
+            }
+        });
+    });
 
+    function updateComboTotals() {
+        let grandTotal = 0;
+        let totalItems = 0;
+        const selectedProducts = [];
+
+        comboItems.forEach(item => {
+            const sizeSelect = item.querySelector('.combo-size-select');
+            const qtyInput = item.querySelector('.combo-qty');
+            const subtotalDisplay = item.querySelector('.custom-product-subtotal');
+            const productName = item.querySelector('.custom-product-name').textContent;
+            const productCard = item.querySelector('.custom-combo-product');
+
+            const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+            const price = parseInt(selectedOption.getAttribute('data-price')) || 0;
+            const qty = parseInt(qtyInput.value) || 0;
+            const subtotal = price * qty;
+
+            subtotalDisplay.textContent = `₹${subtotal}`;
+            grandTotal += subtotal;
+
+            if (qty > 0 && sizeSelect.value) {
+                totalItems += qty;
+                selectedProducts.push({
+                    name: productName,
+                    size: sizeSelect.value,
+                    qty: qty,
+                    price: price,
+                    subtotal: subtotal
+                });
+                productCard.classList.add('selected');
+            } else {
+                productCard.classList.remove('selected');
+            }
+        });
+
+        // Update displays
+        totalDisplay.textContent = `₹${grandTotal}`;
+        if (itemsCountDisplay) {
+            itemsCountDisplay.textContent = `${totalItems} item${totalItems !== 1 ? 's' : ''} selected`;
+        }
+
+        // Update WhatsApp button
         if (selectedProducts.length >= 2) {
-            whatsappBtn.style.pointerEvents = 'auto';
-            whatsappBtn.style.opacity = '1';
-            const productList = selectedProducts.join(', ');
-            const msg = `Hello NAVAVED! I would like a combo quote for: ${productList}. Total: ₹${total}. Please share the combo discount and availability.`;
+            whatsappBtn.classList.remove('disabled-btn');
+            const productLines = selectedProducts.map(p =>
+                `• ${p.name} (${p.size}) × ${p.qty} = ₹${p.subtotal}`
+            ).join('\n');
+            const msg = `Hello NAVAVED! I would like a combo quote for:\n\n${productLines}\n\n*Total: ₹${grandTotal}*\n\nPlease share the combo discount and availability.`;
             whatsappBtn.href = `https://wa.me/919225802549?text=${encodeURIComponent(msg)}`;
         } else {
-            whatsappBtn.style.pointerEvents = 'none';
-            whatsappBtn.style.opacity = '0.5';
+            whatsappBtn.classList.add('disabled-btn');
             whatsappBtn.href = '#';
         }
     }

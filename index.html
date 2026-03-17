@@ -31,7 +31,7 @@
     <meta property="og:site_name" content="NAVAVED Agro Food &amp; Products LLP">
     <meta property="og:title" content="NAVAVED | Ayurvedic Food Products - Chemical-Free &amp; Natural | Kolhapur">
     <meta property="og:description"
-        content="An Ayurvedic Blend with a Traditional Touch. Discover FSSAI certified, chemical-free, traditional food products from Kolhapur. Jaggery powder, mukhvas, pickles &amp; more.">
+        content="An Natural Blend with a Traditional Touch. Discover FSSAI certified, chemical-free, traditional food products from Kolhapur. Jaggery powder, mukhvas, pickles &amp; more.">
     <meta property="og:url" content="https://navavedagro.in/">
     <meta property="og:image" content="https://navavedagro.in/assets/hero-bg.png">
     <meta property="og:image:width" content="1200">
@@ -91,7 +91,7 @@
         "@type": "WebSite",
         "name": "NAVAVED Agro Food & Products LLP",
         "url": "https://navavedagro.in",
-        "description": "NAVAVED - An Ayurvedic Blend with a Traditional Touch. Discover our range of authentic, FSSAI certified Ayurvedic food products for a healthy and energetic life.",
+        "description": "NAVAVED - An Natural Blend with a Traditional Touch. Discover our range of authentic, FSSAI certified Ayurvedic food products for a healthy and energetic life.",
         "publisher": {
             "@type": "Organization",
             "name": "NAVAVED Agro Food & Products LLP",
@@ -109,7 +109,7 @@
         "@context": "https://schema.org",
         "@type": "Product",
         "name": "Aayurgul - Ayurvedic Jaggery Powder",
-        "image": "https://navavedagro.in/assets/products/aayurgul.jpg",
+        "image": "https://navavedagro.in/assets/products/aayurgul.jpeg",
         "description": "NAVAVED Aayurgul is an Ayurvedic jaggery powder made with 100% natural ingredients, no sulphur, no artificial colours or preservatives. A traditional health blend from Kolhapur.",
         "brand": {
             "@type": "Brand",
@@ -209,7 +209,7 @@
             </div>
 
             <h1 class="hero-title">
-                <span class="title-line">An Ayurvedic Blend</span>
+                <span class="title-line">An Natural Blend</span>
                 <span class="title-highlight">with a Traditional Touch</span>
             </h1>
 
@@ -337,8 +337,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Our Collection</span>
-                <h2 class="section-title">Ayurvedic Products</h2>
-                <p class="section-subtitle">Discover our range of authentic Ayurvedic products crafted with love and
+                <p class="section-subtitle">Discover our range of authentic natural products crafted with love and
                     tradition</p>
             </div>
 
@@ -346,7 +345,7 @@
                 <!-- Product 1: Aayurgul -->
                 <div class="product-card" data-product="aayurgul">
                     <div class="product-image">
-                        <img src="assets/products/aayurgul.jpg"
+                        <img src="assets/products/aayurgul.jpeg"
                             alt="NAVAVED Aayurgul - Ayurvedic Jaggery Powder, 100% Chemical-Free Natural Health Blend">
                         <div class="product-badge">Bestseller</div>
                     </div>
@@ -522,7 +521,7 @@
                     </div>
                     <div class="combo-products">
                         <div class="combo-product-item">
-                            <img src="assets/products/aayurgul.jpg" alt="Aayurgul">
+                            <img src="assets/products/aayurgul.jpeg" alt="Aayurgul">
                             <span>Aayurgul (215g)</span>
                         </div>
                         <span class="combo-plus"><i class="fas fa-plus"></i></span>
@@ -558,7 +557,7 @@
                     </div>
                     <div class="combo-products">
                         <div class="combo-product-item">
-                            <img src="assets/products/aayurgul.jpg" alt="Aayurgul">
+                            <img src="assets/products/aayurgul.jpeg" alt="Aayurgul">
                             <span>Aayurgul (480g)</span>
                         </div>
                         <span class="combo-plus"><i class="fas fa-plus"></i></span>
@@ -640,7 +639,7 @@
                     </div>
                     <div class="combo-products combo-products-wrap">
                         <div class="combo-product-item">
-                            <img src="assets/products/aayurgul.jpg" alt="Aayurgul">
+                            <img src="assets/products/aayurgul.jpeg" alt="Aayurgul">
                             <span>Aayurgul</span>
                         </div>
                         <span class="combo-plus"><i class="fas fa-plus"></i></span>
@@ -683,60 +682,111 @@
             </div>
 
             <!-- Build Your Own Combo -->
+            <!-- Build Your Own Combo -->
             <div class="custom-combo" id="customCombo">
                 <div class="custom-combo-header">
                     <h3><i class="fas fa-sliders-h"></i> Build Your Own Combo</h3>
-                    <p>Select 2 or more products to get a custom combo quote</p>
+                    <p>Select products, choose sizes, and set quantities to get a custom combo quote</p>
                 </div>
                 <div class="custom-combo-grid">
-                    <label class="custom-combo-item">
-                        <input type="checkbox" data-name="Aayurgul (215g)" data-price="100">
+                    <!-- Aayurgul -->
+                    <div class="custom-combo-item" data-product="aayurgul">
                         <div class="custom-combo-product">
-                            <img src="assets/products/aayurgul.jpg" alt="Aayurgul">
-                            <span class="custom-product-name">Aayurgul (215g)</span>
-                            <span class="custom-product-price">₹100</span>
+                            <img src="assets/products/aayurgul.jpeg" alt="Aayurgul">
+                            <span class="custom-product-name">Aayurgul</span>
+                            <select class="combo-size-select" data-prices='{"215g":100,"480g":200}'>
+                                <option value="" data-price="0">Select Size</option>
+                                <option value="215g" data-price="100">215g — ₹100</option>
+                                <option value="480g" data-price="200">480g — ₹200</option>
+                            </select>
+                            <div class="combo-qty-control">
+                                <button type="button" class="qty-btn qty-minus">−</button>
+                                <input type="number" class="combo-qty" value="0" min="0" max="10" readonly>
+                                <button type="button" class="qty-btn qty-plus">+</button>
+                            </div>
+                            <span class="custom-product-subtotal">₹0</span>
                         </div>
-                    </label>
-                    <label class="custom-combo-item">
-                        <input type="checkbox" data-name="Annapurna (50g)" data-price="60">
+                    </div>
+                    <!-- Annapurna -->
+                    <div class="custom-combo-item" data-product="annapurna">
                         <div class="custom-combo-product">
                             <img src="assets/products/annapurna.jpg" alt="Annapurna">
-                            <span class="custom-product-name">Annapurna (50g)</span>
-                            <span class="custom-product-price">₹60</span>
+                            <span class="custom-product-name">Annapurna</span>
+                            <select class="combo-size-select" data-prices='{"50g":60,"200g":200}'>
+                                <option value="" data-price="0">Select Size</option>
+                                <option value="50g" data-price="60">50g — ₹60</option>
+                                <option value="200g" data-price="200">200g — ₹200</option>
+                            </select>
+                            <div class="combo-qty-control">
+                                <button type="button" class="qty-btn qty-minus">−</button>
+                                <input type="number" class="combo-qty" value="0" min="0" max="10" readonly>
+                                <button type="button" class="qty-btn qty-plus">+</button>
+                            </div>
+                            <span class="custom-product-subtotal">₹0</span>
                         </div>
-                    </label>
-                    <label class="custom-combo-item">
-                        <input type="checkbox" data-name="Masala Mirchi (50g)" data-price="60">
+                    </div>
+                    <!-- Masala Mirchi -->
+                    <div class="custom-combo-item" data-product="masalamirchi">
                         <div class="custom-combo-product">
                             <img src="assets/products/masalamirchi.jpg" alt="Masala Mirchi">
-                            <span class="custom-product-name">Masala Mirchi (50g)</span>
-                            <span class="custom-product-price">₹60</span>
+                            <span class="custom-product-name">Masala Mirchi</span>
+                            <select class="combo-size-select" data-prices='{"50g":60}'>
+                                <option value="" data-price="0">Select Size</option>
+                                <option value="50g" data-price="60">50g — ₹60</option>
+                            </select>
+                            <div class="combo-qty-control">
+                                <button type="button" class="qty-btn qty-minus">−</button>
+                                <input type="number" class="combo-qty" value="0" min="0" max="10" readonly>
+                                <button type="button" class="qty-btn qty-plus">+</button>
+                            </div>
+                            <span class="custom-product-subtotal">₹0</span>
                         </div>
-                    </label>
-                    <label class="custom-combo-item">
-                        <input type="checkbox" data-name="Guava Jam (105g)" data-price="55">
+                    </div>
+                    <!-- Guava Jam -->
+                    <div class="custom-combo-item" data-product="guavajam">
                         <div class="custom-combo-product">
                             <img src="assets/products/guava_jam.jpeg" alt="Guava Jam">
-                            <span class="custom-product-name">Guava Jam (105g)</span>
-                            <span class="custom-product-price">₹55</span>
+                            <span class="custom-product-name">Guava Jam</span>
+                            <select class="combo-size-select" data-prices='{"105g":55}'>
+                                <option value="" data-price="0">Select Size</option>
+                                <option value="105g" data-price="55">105g — ₹55</option>
+                            </select>
+                            <div class="combo-qty-control">
+                                <button type="button" class="qty-btn qty-minus">−</button>
+                                <input type="number" class="combo-qty" value="0" min="0" max="10" readonly>
+                                <button type="button" class="qty-btn qty-plus">+</button>
+                            </div>
+                            <span class="custom-product-subtotal">₹0</span>
                         </div>
-                    </label>
-                    <label class="custom-combo-item">
-                        <input type="checkbox" data-name="Garlic Pickle (100g)" data-price="75">
+                    </div>
+                    <!-- Garlic Pickle -->
+                    <div class="custom-combo-item" data-product="garlicpickle">
                         <div class="custom-combo-product">
                             <img src="assets/products/lasun_lonche.jpeg" alt="Garlic Pickle">
-                            <span class="custom-product-name">Garlic Pickle (100g)</span>
-                            <span class="custom-product-price">₹75</span>
+                            <span class="custom-product-name">Garlic Pickle</span>
+                            <select class="combo-size-select" data-prices='{"100g":75}'>
+                                <option value="" data-price="0">Select Size</option>
+                                <option value="100g" data-price="75">100g — ₹75</option>
+                            </select>
+                            <div class="combo-qty-control">
+                                <button type="button" class="qty-btn qty-minus">−</button>
+                                <input type="number" class="combo-qty" value="0" min="0" max="10" readonly>
+                                <button type="button" class="qty-btn qty-plus">+</button>
+                            </div>
+                            <span class="custom-product-subtotal">₹0</span>
                         </div>
-                    </label>
+                    </div>
                 </div>
                 <div class="custom-combo-footer" id="customComboFooter">
-                    <div class="custom-combo-total">
-                        <span class="custom-total-label">Your Combo Total:</span>
-                        <span class="custom-total-price" id="customTotalPrice">₹0</span>
+                    <div class="custom-combo-summary">
+                        <span class="custom-items-count" id="customItemsCount">0 items selected</span>
+                        <div class="custom-combo-total">
+                            <span class="custom-total-label">Total:</span>
+                            <span class="custom-total-price" id="customTotalPrice">₹0</span>
+                        </div>
                     </div>
                     <a id="customComboWhatsApp" href="#" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-primary combo-cta custom-combo-btn" style="pointer-events: none; opacity: 0.5;">
+                        class="btn btn-primary combo-cta custom-combo-btn disabled-btn">
                         <i class="fab fa-whatsapp"></i> Get Combo Quote
                     </a>
                 </div>
@@ -783,14 +833,15 @@
                     </p>
                 </div>
 
-                <!-- Made in Kolhapur -->
+                <!-- DPIIT Registered Start-up -->
                 <div class="choose-card">
                     <div class="choose-icon">
-                        <i class="fas fa-industry"></i>
+                        <i class="fas fa-rocket"></i>
                     </div>
-                    <h3>Made in Kolhapur</h3>
-                    <p>Manufacturing unit in Jakhale, Kolhapur - the heart of India's agricultural belt with premium
-                        sugarcane sources.</p>
+                    <h3>DPIIT Registered Start-up</h3>
+                    <p>Recognized by the Department for Promotion of Industry and Internal Trade (DPIIT) under the
+                        Government of India's Startup India initiative — a mark of innovation, credibility, and growth
+                        potential.</p>
                 </div>
 
                 <!-- Women Empowerment -->
@@ -856,7 +907,7 @@
                     <div class="stat-icon">
                         <i class="fas fa-leaf"></i>
                     </div>
-                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-number" data-target="5">0</div>
                     <div class="stat-label">Product Varieties</div>
                 </div>
             </div>
@@ -1132,8 +1183,8 @@
                 <div class="footer-brand">
                     <img src="assets/logo/logo.png" alt="NAVAVED Agro Food & Products LLP Logo - Ayurvedic Products"
                         class="footer-logo">
-                    <p class="footer-tagline">An Ayurvedic Blend with a Traditional Touch</p>
-                    <p class="footer-desc">Bringing you authentic Ayurvedic products for a healthy and energetic life.
+                    <p class="footer-tagline">An Natural Blend with a Traditional Touch</p>
+                    <p class="footer-desc">Bringing you authentic organic products for a healthy and energetic life.
                     </p>
                     <div class="footer-social">
                         <a href="https://www.instagram.com/navaved__agro?igsh=MW94cjhwbWI2aXh4cw%3D%3D&utm_source=qr"
