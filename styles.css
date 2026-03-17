@@ -1315,6 +1315,382 @@ button {
 }
 
 /* ============================================
+   PRODUCT COMBOS SECTION
+   ============================================ */
+.combos {
+    padding: var(--spacing-xxl) 0;
+    background: linear-gradient(180deg, var(--cream-light) 0%, var(--white) 100%);
+}
+
+.combos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.combo-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid transparent;
+}
+
+.combo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.combo-card.combo-featured {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, var(--white) 0%, #fff8f0 100%);
+}
+
+.combo-card.combo-featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
+}
+
+/* Combo Badge */
+.combo-badge {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--white);
+    padding: 4px 14px;
+    border-radius: var(--radius-xl);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.combo-badge.featured {
+    background: linear-gradient(135deg, var(--gold), #b8941f);
+}
+
+.combo-badge.spicy {
+    background: linear-gradient(135deg, #dc3545, #a71d2a);
+}
+
+.combo-badge.collection {
+    background: linear-gradient(135deg, var(--green), #3a6347);
+}
+
+/* Combo Header */
+.combo-header {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.combo-icon {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, var(--cream), var(--cream-dark));
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-sm);
+    font-size: 1.4rem;
+    color: var(--primary);
+}
+
+.combo-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--secondary);
+    margin-bottom: 4px;
+}
+
+.combo-desc {
+    font-size: 0.88rem;
+    color: var(--dark-light);
+}
+
+/* Combo Products Row */
+.combo-products {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md) 0;
+    border-top: 1px solid var(--cream-dark);
+    border-bottom: 1px solid var(--cream-dark);
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1;
+}
+
+.combo-products-wrap {
+    flex-wrap: wrap;
+}
+
+.combo-product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.combo-product-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    border: 2px solid var(--cream-dark);
+}
+
+.combo-product-item span {
+    font-size: 0.72rem;
+    color: var(--dark-light);
+    font-weight: 500;
+    text-align: center;
+    max-width: 80px;
+}
+
+.combo-plus {
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* Combo Pricing */
+.combo-pricing {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.combo-original,
+.combo-offer {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.combo-original-label,
+.combo-offer-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--dark-light);
+    font-weight: 600;
+}
+
+.combo-original-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-light);
+    text-decoration: line-through;
+}
+
+.combo-offer-price {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary);
+    font-family: var(--font-primary);
+}
+
+.combo-savings {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    color: #2e7d32;
+    padding: 4px 12px;
+    border-radius: var(--radius-xl);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+/* Combo CTA Button */
+.combo-cta {
+    width: 100%;
+    justify-content: center;
+    margin-top: auto;
+}
+
+/* Build Your Own Combo */
+.custom-combo {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+    border: 2px dashed var(--primary-light);
+}
+
+.custom-combo-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.custom-combo-header h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.custom-combo-header h3 i {
+    color: var(--primary);
+}
+
+.custom-combo-header p {
+    color: var(--dark-light);
+    font-size: 0.95rem;
+    margin-top: var(--spacing-xs);
+}
+
+.custom-combo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.custom-combo-item {
+    cursor: pointer;
+}
+
+.custom-combo-item input[type="checkbox"] {
+    display: none;
+}
+
+.custom-combo-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--cream-dark);
+    transition: var(--transition-normal);
+    text-align: center;
+}
+
+.custom-combo-product:hover {
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+.custom-combo-item input:checked + .custom-combo-product {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, #fff8f0, #fff3e6);
+    box-shadow: 0 0 0 3px rgba(232, 119, 34, 0.15);
+}
+
+.custom-combo-product img {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+}
+
+.custom-product-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.custom-product-price {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.custom-combo-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--spacing-md);
+    border-top: 2px solid var(--cream);
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.custom-combo-total {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.custom-total-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.custom-total-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.custom-combo-btn {
+    width: auto;
+}
+
+/* Combos Responsive */
+@media (max-width: 992px) {
+    .combos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .custom-combo-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .combos-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .custom-combo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .custom-combo-footer {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .custom-combo-total {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .custom-combo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .combo-products {
+        flex-wrap: wrap;
+    }
+}
+
+/* ============================================
    WHY CHOOSE US SECTION
    ============================================ */
 .why-choose {

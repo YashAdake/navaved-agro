@@ -429,7 +429,7 @@ function isElementInViewport(el) {
 function setupRevealAnimations() {
     // Use CSS class for initial hidden state (applied via JS, not CSS)
     // This way, if JS fails, content is still visible
-    const revealSelectors = '.product-card, .team-card, .stat-card, .choose-card, .timeline-item, .vision-card';
+    const revealSelectors = '.product-card, .team-card, .stat-card, .choose-card, .timeline-item, .vision-card, .combo-card';
     const revealElements = document.querySelectorAll(revealSelectors);
 
     // Only setup observer if supported
@@ -487,6 +487,47 @@ function setupRevealAnimations() {
 }
 
 // ============================================
+// CUSTOM COMBO BUILDER
+// ============================================
+function setupCustomCombo() {
+    const checkboxes = document.querySelectorAll('#customCombo input[type="checkbox"]');
+    const totalDisplay = document.getElementById('customTotalPrice');
+    const whatsappBtn = document.getElementById('customComboWhatsApp');
+
+    if (!checkboxes.length || !totalDisplay || !whatsappBtn) return;
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', updateCustomCombo);
+    });
+
+    function updateCustomCombo() {
+        let total = 0;
+        const selectedProducts = [];
+
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                total += parseInt(cb.dataset.price);
+                selectedProducts.push(cb.dataset.name);
+            }
+        });
+
+        totalDisplay.textContent = `₹${total}`;
+
+        if (selectedProducts.length >= 2) {
+            whatsappBtn.style.pointerEvents = 'auto';
+            whatsappBtn.style.opacity = '1';
+            const productList = selectedProducts.join(', ');
+            const msg = `Hello NAVAVED! I would like a combo quote for: ${productList}. Total: ₹${total}. Please share the combo discount and availability.`;
+            whatsappBtn.href = `https://wa.me/919225802549?text=${encodeURIComponent(msg)}`;
+        } else {
+            whatsappBtn.style.pointerEvents = 'none';
+            whatsappBtn.style.opacity = '0.5';
+            whatsappBtn.href = '#';
+        }
+    }
+}
+
+// ============================================
 // INITIALIZE
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -497,6 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
     handleNavbarScroll();
     handleFloatingButtons();
     updateScrollProgress();
+    setupCustomCombo();
 });
 
 // Make functions globally available
