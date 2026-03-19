@@ -56,7 +56,7 @@ const products = {
             "Contains antioxidants",
             "No added chemicals or preservatives"
         ],
-        price: "₹60 (50g) | ₹200 (200g)",
+        price: "₹35 (50g) | ₹130 (200g)",
         sizes: "50g, 200g"
     },
     masalamirchi: {
